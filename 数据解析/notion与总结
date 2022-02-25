@@ -1,0 +1,83 @@
+爬虫分类：（使用场景）
+    通用爬虫，聚焦爬虫，增量式爬虫
+聚焦爬虫：爬取页面中指定的页面内容（75%的业务需求）
+    编码流程：
+        指定url
+        发起请求
+        获取响应数据
+        数据解析
+        持久化存储
+数据解析分类：
+    正则
+    bs4
+    xpath(重点）
+数据解析原理概述：
+    解析的局部文本内容都会在标签之间或者标签对应的属性中进行存储
+    1.进行指定标签的定位
+    2.便签或者标签对应的属性中存储的数据值进行提取
+
+补充：正则表达式
+单字符：
+.：除换行以外的所有字符
+[...]: 指代方括号中的任意字符
+\d:数字【0-9】
+\D:非数字
+\w:数字，字母，下划线，中文
+\W:非\w
+\s:所有空白字符包，包括空格、制表符、幻夜符等等。等价于{\f\n\r\t\v}
+\S:非空白
+数量修饰：
+*：任意多次 >=0
++: 至少一次 >=1
+？:可有可无 0次或者1次
+{m}：固定m次， hello{3,0}
+{m,}：至少m次
+{m,n}：m-n次
+边界：
+$:以某某结尾
+^:以某某开头
+分组：
+（ab）
+贪婪模式：.*
+非贪婪模式{惰性}模式：.*？
+re.I：忽略大小写
+re.M：多行匹配
+re.S: 单行匹配
+re.sub:（正则表达式，替换内容。字符串）
+找
+re.findall(pattern, string, flags=0)
+pattern-->正则表达式
+string-->需要处理的字符串
+flags-->说明匹配模式，如是否大小写re.I
+切
+re.split(pattern, string, maxsplit=0, flags=0)
+pattern-->正则表达式
+string-->需要处理的字符串
+maxsplit-->最大匹配次数。0表示匹配所有次
+替
+re.sub(pattern, repl, string, count=0, flags=0)
+pattern-->正则表达式
+repl-->新的替换内容
+string-->需要处理的字符串
+count-->替换次数。0表示匹配替换所有次
+flags-->匹配模式
+ bs4数据解析，仅能用在python里面
+    -数据解析的原理：
+        标签定位
+        提取标签。标签属性中存储的数据值
+    bs4数据解析化原理：
+        1.实例化一个beautifulsoup对象，并且奖也没源码数据加载到该对象中
+        2.通过调用beautifulsoup对象中相关的属性和方法进行标签定位和数据提取
+    环境安装：
+        pip install bs4
+        pip install lxml
+    如何实例化beautifulsoup对象：
+        from bs4 import beautifulsoup
+        对象的实例化：
+            1.将本地的html文档中的数据加载到改对象中
+            fp=open('目录'，'r',encdonding='utf-8')
+            soup=BeautifulSoup(fp,'lxml')用lxml打开fp文档
+            2.将互联网上获取的页面源码加载到该对象中
+             page_text=respone.text
+             soup=beatifulSoup(page_text,'lxml')
+        提供的用于数据解析的方法与属性。
